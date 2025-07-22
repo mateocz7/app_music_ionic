@@ -1,0 +1,80 @@
+.profile-defaul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 40px 20px;
+
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d2b18;
+    margin: 12px 0 4px;
+    text-align: center;
+  }
+
+  p {
+    font-size: 14px;
+    color: #6a6a6a;
+    text-align: center;
+    margin: 0;
+  }
+}
+
+.credentials-form {
+  margin: 40px 20px;
+  padding: 32px 24px;
+  background: #f8f8f8;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.validation-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.credentials-form ion-item {
+  --background: #ffffff;
+  --border-radius: 12px;
+  margin-bottom: 18px;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  --inner-padding-end: 0;
+  --highlight-height: 1px;
+  --border-color: #dcdcdc; // línea inferior gris claro
+}
+
+.credentials-form ion-input {
+  color: #1d1d1d;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.credentials-form .submit-button {
+  --background: var(--btn-color);  /* Verde claro */
+  --color: #ffffff;
+  font-weight: bold;
+  font-size: 16px;
+  border-radius: 12px; /* 🔧 BAJA este valor para evitar los bordes redondeados extremos */
+  margin-top: 10px;
+  box-shadow: none; /* ❌ O elimina el sombreado si no lo necesitas */
+}
+
+.account-question {
+  text-align: center;
+  margin-top: 20px;
+  font-size: 14px;
+  color: #333;
+}
+
+.login-link {
+  color: #3e9eff;
+  font-weight: bold;
+  margin-left: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}

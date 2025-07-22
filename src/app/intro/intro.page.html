@@ -1,0 +1,15 @@
+<ion-content [style.--background]="bgFondo">
+<swiper-container pagination="true" loop="true" slides-per-wiew= "1" class="my-swiper">
+  <swiper-slide *ngFor="let intro of intro">
+    <div class="slide-content">
+      <img [src]="intro.image">
+      <h2 class="text-title-background">{{intro.title}}</h2>
+      <p class="text-description-background">{{intro.description}}</p>
+    </div>
+  </swiper-slide>
+</swiper-container>
+
+<div class="ion-text-center">
+  <ion-button (click)="goBack()" [ngClass]="buttonClass">Continuar</ion-button>
+</div>
+</ion-content>

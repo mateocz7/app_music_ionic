@@ -1,0 +1,46 @@
+<ion-split-pane contentId="main-content">
+  <ion-menu contentId="main-content" type="overlay" class="menu-custom">
+    <!-- Contenido del menú -->
+    <ion-content class="custom-menu">
+      <!-- Sección de perfil -->
+      <div class="profile-container">
+        <img src="/assets/images/menu/avatar.png" alt="Avatar" class="avatar" />
+        <h2 class="name">Sophia Rose</h2>
+        <p class="role">UX/UI Designer</p>
+      </div>
+
+      <!-- Lista de opciones -->
+      <ion-list class="menu-list">
+        <ion-item button lines="none">
+          <ion-icon name="home-outline" slot="start"></ion-icon>
+          Home
+        </ion-item>
+        <ion-item button lines="none">
+          <ion-icon name="document-outline" slot="start"></ion-icon>
+          Topics
+        </ion-item>
+        <ion-item button lines="none">
+          <ion-icon name="chatbubble-outline" slot="start"></ion-icon>
+          Messages
+        </ion-item>
+      </ion-list>
+
+      <!-- Botón de cerrar menú (parte superior derecha) -->
+      <ion-buttons class="close-btn" slot="end">
+        <ion-menu-toggle auto-hide="false">
+          <ion-icon name="close-outline" (click)="closeMenu()"></ion-icon>
+        </ion-menu-toggle>
+      </ion-buttons>
+
+      <div class="menu-footer">
+        <ion-button expand="block" fill="clear" (click)="logout()">
+          <ion-icon name="log-out-outline" slot="start"></ion-icon>
+          Cerrar sesión
+        </ion-button>
+      </div>
+    </ion-content>
+  </ion-menu>
+
+  <!-- Área de contenido -->
+  <ion-router-outlet id="main-content"></ion-router-outlet>
+</ion-split-pane>

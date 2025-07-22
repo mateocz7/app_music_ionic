@@ -1,0 +1,28 @@
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
+
+:root{
+    --color-claro: #adbff7;
+    --color-oscuro: #4b49c9;
+    --espaciado-base: 1rem;
+    --espaciado-grande: 2rem;
+
+    --color-slide-title: #a4d6f9;
+
+
+    --bg-color: #f4f6f7; // color de fondo de la app
+    --description-color: #949494; // color de los textos
+    --title-color: #000000; // color de los titulos
+    --btn-color: #92E3A9; // color de fondo de los botones
+    --font-text-title: Avenir Next;
+    --font-text-description: Avenir;
+}
+
+
+.toast-error {
+  --background: #ffe6e6;
+  --color: #b00020;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --font-size: 14px;
+}

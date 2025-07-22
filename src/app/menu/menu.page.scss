@@ -1,0 +1,91 @@
+// ==============================
+// ESTILO GENERAL DEL MENÚ
+// ==============================
+
+ion-menu.menu-custom {
+  --background: #f4f6f7;       // Define una variable CSS personalizada para el fondo
+  background: #f4f6f7;         // Color de fondo claro para todo el menú (respaldo directo)
+  color: #1a1a1a;              // Color de texto general (gris oscuro)
+}
+
+
+// ==============================
+// FONDO INTERNO DEL CONTENIDO DEL MENÚ
+// ==============================
+
+ion-menu.menu-custom ion-content {
+  --background: #f4f6f7;       // Fondo del contenido del menú
+  background: #f4f6f7;
+}
+
+
+// ==============================
+// ESTILO DE LA LISTA DE OPCIONES
+// ==============================
+
+ion-menu.menu-custom ion-list {
+  --background: #f4f6f7;       // Fondo de la lista de items
+  background: #f4f6f7;
+  padding: 0 16px;             // Espaciado horizontal para que los items no estén pegados a los bordes
+}
+
+
+// ==============================
+// ESTILO DE CADA ITEM DEL MENÚ
+// ==============================
+
+ion-menu.menu-custom ion-item {
+  --background: #ffffff;       // Fondo blanco para cada item individual
+  background: #ffffff;
+  border-radius: 12px;         // Bordes redondeados para estilo moderno
+  margin-bottom: 12px;         // Separación entre items
+  box-shadow: 0 1px 4px rgba(0,0,0,0.05); // Sombra sutil para dar relieve
+  color: #1a1a1a;              // Texto en gris oscuro
+
+  ion-icon {
+    color: #1a1a1a;            // Color del ícono (mismo gris oscuro)
+  }
+}
+
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 16px 16px;
+  background: #f4f6f7;
+
+  .avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;          // Hace que la imagen sea completamente redonda
+    object-fit: cover;           // Recorta la imagen para que no se deforme
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); // Sombra sutil
+    margin-bottom: 12px;
+  }
+
+  .name {
+    font-weight: 600;
+    font-size: 16px;
+    margin: 0;
+    color: #1a1a1a;             // Nombre en gris oscuro
+  }
+
+  .role {
+    font-size: 13px;
+    color: #8e8e8e;             // Rol en gris más claro
+    margin: 2px 0 0 0;
+  }
+}
+
+.menu-footer {
+  position: absolute;         // Lo posiciona fijo al final
+  bottom: 20px;
+  width: 100%;
+  padding: 0 16px;
+
+  ion-button {
+    --color: #e74c3c;          // Rojo para indicar cierre de sesión
+    font-weight: 500;
+    text-align: left;
+  }
+}
