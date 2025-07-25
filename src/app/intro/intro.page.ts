@@ -21,17 +21,17 @@ export class IntroPage implements OnInit {
 
   intro = [
     {
-      image:"/assets/images/intro/slide1.png",
+      image:"/assets/images/intro/music1.jpg",
       title:"Listen Anywhere",
       description:"Favorite tunes follow, anytime, anywhere. Worry-free offline playback for your journey."
     },
     {
-      image:"/assets/images/intro/slide2.png",
+      image:"/assets/images/intro/slide2.jpg",
       title:"Playback",
       description:"Pristine sound quality for absolute clarity in audio playback."
     },
     {
-      image:"/assets/images/intro/slide3.png",
+      image:"/assets/images/intro/music3.png",
       title:"Music For You",
       description:"Curated weekly playlists tailored to your music listening history."
     }
