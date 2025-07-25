@@ -1,0 +1,20 @@
+<ion-content [fullscreen]="true" class="songs-modal">
+  <div class="artist-container">
+    <img [src]="albumImage" class="artist-image" alt="Artist" />
+    <h2 class="artist-name">{{ artistName }}</h2>
+  </div>
+
+  <div *ngFor="let song of songs" 
+       class="song-card" 
+       [ngClass]="{ 'active': song.id === activeSongId }">
+    <div class="song-info">
+      <h3>{{ song.name }}</h3>
+      <p>Duración: {{ getMinutes(song.duration_ms) }}</p>
+    </div>
+    <ion-icon
+      [name]="song.id === activeSongId ? 'pause-circle' : 'play-circle'"
+      (click)="playSong(song)"
+      class="play-icon"
+    ></ion-icon>
+  </div>
+</ion-content>

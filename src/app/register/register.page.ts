@@ -99,7 +99,7 @@ export class RegisterPage implements OnInit {
       await this.storageService.set('validateLogin', true);
 
       // Redirigir al home
-      this.navController.navigateForward('/home');
+      this.navController.navigateForward('menu/home');
     } catch (error) {
       this.presentErrorToast('Ocurrió un error al registrar el usuario.');
       console.log('Error al registrar:', error);

@@ -58,7 +58,7 @@ export class LoginPage implements OnInit {
       const response = await this.authService.loginUser(credentials);
       this.errorMessage = '';
       await this.storageService.set('validateLogin', true);
-      this.navController.navigateForward('/home');
+      this.navController.navigateForward('menu/home');
     } catch (error) {
       this.presentErrorToast(error as string);
       console.log('Response', error);

@@ -1,15 +1,17 @@
 import { Component,OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonButton } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, ModalController } from '@ionic/angular/standalone';
 import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { StorageService } from '../services/storage.service';
+import { CatalogService } from '../services/core/catalog.service';
 import { Router } from '@angular/router';
+import { SongsModalPage } from '../songs-modal/songs-modal.page';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
-  imports: [IonHeader, IonToolbar, IonTitle, CommonModule, IonButton],
+  imports: [IonHeader, IonToolbar, IonTitle, CommonModule],
   schemas:[CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomePage implements OnInit{
@@ -17,6 +19,9 @@ export class HomePage implements OnInit{
   colorOscuro = 'var(--color-oscuro)';
   colorActual = this.colorOscuro;*/
 
+  tracks: any[] = [];
+  albums: any[] = [];
+  localArtist: any;
   validateIntro = false;
   generes = [
     {
@@ -35,11 +40,28 @@ export class HomePage implements OnInit{
       description: "El jazz es un género musical nacido en Estados Unidos a finales del siglo XIX, conocido por su improvisación, ritmo swing y una gran expresividad instrumental."
     }
   ]
-    constructor(private storageService : StorageService, private router : Router) {}
+    constructor(private storageService : StorageService, private router : Router, private catalogService: CatalogService,
+      private modalController: ModalController
+    ) {}
 
     async ngOnInit() {
       await this.loadStorageData();
-      //this.cargarDatos();
+      this.loadAlbums();
+      this.getLocalArtists();
+    }
+
+    loadTracks(){
+        this.catalogService.getTracks().then(tracks => {
+        this.tracks = tracks;
+        console.log(this.tracks, 'las canciones');
+      });
+    }
+
+    loadAlbums(){
+        this.catalogService.getAlbums().then(albums => {
+        this.albums = albums;
+        console.log(this.albums, 'Los albunes');
+      });
     }
 
     /*async cambiarColor(){
@@ -62,17 +84,23 @@ export class HomePage implements OnInit{
       console.log("Ya fue al intro? " , this.validateIntro);
     }
 
-    /*async cargarDatos(){
-      const data = await this.obtenerDatos();
-      console.log('Datos simulados: ', data);
-    }*/
+    getLocalArtists(){
+      this.localArtist = this.catalogService.getLocalArtists;
+      console.log('Artistas: ', this.localArtist.artistas)
+    }
 
-    /*obtenerDatos(){
-      return new Promise((resolve)=>{
-        setTimeout(() =>{
-          resolve(['Musica Clasica','Rock','Jazz'])
-        },3000)
+    async showSongs(albumId: string){
+      console.log('albumId: ',albumId)
+      const songs = await this.catalogService.getSongByAlbumId(albumId);
+      console.log('songs: ',songs)
+      const modal = await this.modalController.create({
+        component:SongsModalPage,
+        componentProps:{
+          songs
+        }
       })
-    }*/
+      modal.present();
+    }
 }
+
 

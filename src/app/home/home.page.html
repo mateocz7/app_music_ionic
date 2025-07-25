@@ -9,9 +9,26 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div class="home-container">
-    <ion-button expand="block" (click)="goBackIntro()">Ir al intro</ion-button>
-    <ion-button expand="block" (click)="goBackLogin()">Ir al login</ion-button>
-  </div>
+<ion-content class="album-content">
+  <swiper-container
+    loop="true"
+    slides-per-view="2"
+    space-between="16"
+    class="album-swiper"
+  >
+
+  
+    <swiper-slide *ngFor="let album of albums" (click)="showSongs(album.id)">
+      <div class="album-card">
+        <img [src]="album.image" [alt]="album.name" />
+        <div class="overlay">
+          <div class="album-info">
+            <h4>{{ album.name }}</h4>
+            <p>{{ album.label }}</p>
+          </div>
+          <ion-icon name="play-circle-outline" class="play-icon"></ion-icon>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
 </ion-content>
