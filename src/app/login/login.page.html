@@ -32,6 +32,11 @@
         <ion-button expand="block" type="submit" class="login-btn" [disabled]="!loginForm.valid">
           Iniciar sesión
         </ion-button>
+
+        <div *ngIf="errorMenssage" class="error-box">
+  {{ errorMenssage }}
+</div>
+
       </form>
 
       <div class="login-bottom">

@@ -104,3 +104,14 @@ ion-input {
   color: #0066cc !important; // o el color que prefieras cuando está activo
 }
 
+.error-box {
+  margin-top: 12px;
+  color: #e74c3c;
+  background: rgba(255, 235, 235, 0.8);
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: 500;
+}
+
+

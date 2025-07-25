@@ -67,19 +67,20 @@ export class LoginPage implements OnInit {
   ngOnInit() {}
 
   loginUser(credentials: any) {
-    console.log(credentials);
-    this.authService.loginUser(credentials).then(res => {
-      this.errorMenssage = "";
-      try {
-        this.storageService.set('login', true);
-      } catch (error) {
-        console.error('Error guardando en el storage:', error);
-      }
-      this.navCtrl.navigateForward("/menu/home");
-    }).catch(error => {
-      this.errorMenssage = error;
-    });
-  }
+  console.log(credentials);
+  this.authService.loginUser(credentials).then(res => {
+    this.errorMenssage = "";
+    try {
+      this.storageService.set('login', true);
+    } catch (error) {
+      console.error('Error guardando en el storage:', error);
+    }
+    this.navCtrl.navigateForward("/menu/home");
+  }).catch(error => {
+    this.errorMenssage = error;
+  });
+}
+
 
   goRegister() {
     this.router.navigateByUrl("/register")

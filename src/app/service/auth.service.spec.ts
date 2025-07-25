@@ -22,7 +22,7 @@ describe('AuthService', () => {
   it('should perform login', () => {
     const dummyCredentials = {
       email: 'mateo@gmail.com',
-      password: '123456'
+      password: '1234562'
     };
 
     service.loginUser(dummyCredentials).then(response => {
