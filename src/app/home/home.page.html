@@ -54,6 +54,6 @@
     </ion-row>
   </ion-grid>
 
-  <ion-text color="danger" *ngIf="!song?.name"><h2>Sin canción activa</h2></ion-text>
+  <ion-text color="danger" *ngIf="!song?.name"><h2>No hay canción activada</h2></ion-text>
   <ion-text color="success" *ngIf="song?.name"><h2>{{ song.name }}</h2></ion-text>
 </ion-footer>

@@ -231,7 +231,7 @@ export class HomePage implements OnInit{
     if (this.song?.name) {
       this.song.liked = !this.song.liked;
     } else {
-      console.log("No hay canción seleccionada para dar like.");
+      console.log("No hay canción seleccionada");
     }
   }
 
