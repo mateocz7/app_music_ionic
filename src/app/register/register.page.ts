@@ -1,127 +1,121 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from '../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { Router } from '@angular/router';
 import {
   FormsModule,
   ReactiveFormsModule,
-  FormGroup,
   FormBuilder,
-  FormControl,
+  FormGroup,
   Validators,
+  FormControl,
 } from '@angular/forms';
-import {
-  IonContent,
-  ToastController,
-  NavController,
-  IonInput,
-  IonButton, IonItem, IonLabel } from '@ionic/angular/standalone';
-import { StorageService } from '../services/storage.service';
+import { IonContent, IonicModule, NavController, IonToolbar, IonItem } from '@ionic/angular';
+import { AuthService } from '../service/auth.service';
+import { StorageService } from '../service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
   standalone: true,
-  imports: [IonItem, 
-    IonButton,
-    IonContent,
-    IonInput,
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, ReactiveFormsModule]
 })
 export class RegisterPage implements OnInit {
+
   registerForm: FormGroup;
-  bgFondo = 'var(--bg-color)';
-  errorMessage: string = '';
+  borderRadius = 'var(--input-border-radius)';
+  titleColor = 'var(--title-color)';
+  colorNegro = 'var(--color-negro)';
+  errorMenssage: string = "";
 
   validation_messages = {
-    nombres: [
-      { type: 'required', message: 'El nombre es obligatorio.' },
+    nombre: [
       {
-        type: 'minlength',
-        message: 'El nombre debe tener al menos 3 caracteres.',
-      },
+        type: "required", mensaje: "El nombre es obligatorio."
+      }
     ],
-    apellidos: [
-      { type: 'required', message: 'Los apellidos sib obligatorios.' },
+    apellido: [
       {
-        type: 'minlength',
-        message: 'Los apellidos deben tener al menos 4 caracteres.',
-      },
+        type: "required", mensaje: "El apellido es obligatorio."
+      }
     ],
     email: [
-      { type: 'required', message: 'El email es obligatorio.' },
-      { type: 'email', message: 'Debes ingresar un email válido.' },
+      {
+        type: "required", mensaje: "El email es obligatorio."
+      },
+      {
+        type: "email", mensaje: "Email invalido."
+      }
     ],
     password: [
-      { type: 'required', message: 'La contraseña es obligatoria.' },
       {
-        type: 'minlength',
-        message: 'La contraseña debe tener al menos 6 caracteres.',
+        type: "required", mensaje: "La contraseña es obligatoria."
       },
-    ],
-  };
-
-  constructor(
-  private navController: NavController,
-  private fromBuilder: FormBuilder,
-  private toastController: ToastController,
-  private storageService: StorageService,
-  private router: Router,
-  private authService: AuthService // ✅ Añadido aquí
-) {
-  this.registerForm = this.fromBuilder.group({
-    nombres: new FormControl('', [
-      Validators.required,
-      Validators.minLength(3),
-    ]),
-    apellidos: new FormControl('', [
-      Validators.required,
-      Validators.minLength(4),
-    ]),
-    email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [
-      Validators.required,
-      Validators.minLength(6),
-    ]),
-  });
-}
-
-
-  async registerUser(credentials: any) {
-    try {
-      this.errorMessage = '';
-
-      // Guardar usuario en Storage
-      await this.storageService.set('registeredUser', credentials);
-
-      // Guardar flag de login (para activar guard)
-      await this.storageService.set('validateLogin', true);
-
-      // Redirigir al home
-      this.navController.navigateForward('menu/home');
-    } catch (error) {
-      this.presentErrorToast('Ocurrió un error al registrar el usuario.');
-      console.log('Error al registrar:', error);
-    }
+      {
+        type: "minLength", mensaje: "Contraseña invalida."
+      }
+    ]
   }
 
-  async presentErrorToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 4000,
-      position: 'bottom',
-      cssClass: 'toast-error',
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController, private storageService: StorageService) {
+     this.registerForm = this.formBuilder.group({
+      nombre: new FormControl(
+        '', Validators.compose([
+          Validators.required
+        ])
+      ),
+      apellido: new FormControl(
+        '', Validators.compose([
+          Validators.required
+        ])
+      ),
+      email: new FormControl(
+        '', Validators.compose([
+        Validators.required, //Campo obligatorio
+        Validators.email //Valida que sea correo electronico
+      ])
+    ),
+      password: new FormControl('', Validators.compose([
+        Validators.required,//Campo obligatorio
+        Validators.minLength(6)
+      ])
+    )
     });
-    await toast.present();
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
-  goToLogin(){
+  registerUser(user: any) {
+    console.log('Datos del usuario:', user);
+
+    this.authService.registerUser(user).then(res => {
+      this.errorMenssage = "";
+      console.log(res);
+
+      try {
+        this.storageService.set('credenciales', {
+          name: user.nombre,
+          lastName: user.apellido,
+          email: user.email,
+          password: user.password
+        });
+
+        this.navCtrl.navigateForward("/login");
+
+      } catch (error) {
+        console.error('Error al guardar en el storage:', error);
+      }
+
+    }).catch(error => {
+      this.errorMenssage = error;
+      console.warn('Error de registro:', error);
+    });
+  }
+
+  goLogin() {
     this.router.navigateByUrl("/login")
   }
+
+
 }

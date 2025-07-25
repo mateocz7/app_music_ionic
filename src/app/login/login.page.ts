@@ -8,9 +8,10 @@ import {
   Validators,
   FormControl,
 } from '@angular/forms';
-import { IonicModule, NavController, ToastController } from '@ionic/angular';
-import { AuthService } from '../services/auth/auth.service';
-import { StorageService } from '../services/storage.service';
+import { IonicModule, NavController } from '@ionic/angular';
+import { AuthService } from '../service/auth.service';
+import { StorageService } from '../service/storage.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -20,63 +21,67 @@ import { StorageService } from '../services/storage.service';
   imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule],
 })
 export class LoginPage implements OnInit {
+
+  bgColor = 'var(--bg-color)';
+  borderRadius = 'var(--input-border-radius)';
+  titleColor = 'var(--title-color)';
   loginForm: FormGroup;
-  bgFondo = 'var(--bg-color)';
-  errorMessage: string = '';
+  errorMenssage: string = "";
+  colorNegro = 'var(--color-negro)';
 
   validation_messages = {
     email: [
-      { type: 'required', message: 'El email es obligatorio.' },
-      { type: 'email', message: 'Debes ingresar un email válido.' },
+      {
+        type: "required", mensaje: "El email es obligatorio."
+      },
+      {
+        type: "email", mensaje: "Email invalido."
+      }
     ],
     password: [
-      { type: 'required', message: 'La contraseña es obligatoria.' },
       {
-        type: 'minlength',
-        message: 'La contraseña debe tener al menos 6 caracteres.',
+        type: "required", mensaje: "La contraseña es obligatoria."
       },
-    ],
-  };
+      {
+        type: "minLength", mensaje: "Contraseña invalida."
+      }
+    ]
+  }
 
-  constructor(
-    private fromBuilder: FormBuilder,
-    private authService: AuthService,
-    private navController: NavController,
-    private toastController: ToastController,
-    private storageService: StorageService
-  ) {
-    this.loginForm = this.fromBuilder.group({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', Validators.required),
+  constructor(private router: Router, private formBuilder: FormBuilder, private authService: AuthService, private navCtrl: NavController, private storageService: StorageService) {
+    this.loginForm = this.formBuilder.group({
+      email: new FormControl(
+        '', Validators.compose([
+        Validators.required, //Campo obligatorio
+        Validators.email //Valida que sea correo electronico
+      ])
+    ),
+      password: new FormControl('', Validators.compose([
+        Validators.required,//Campo obligatorio
+        Validators.minLength(6)
+      ])
+    )
     });
   }
 
   ngOnInit() {}
 
-async loginUser(credentials: any) {
-  try {
-    const response = await this.authService.loginUser(credentials);
-    this.errorMessage = '';
-    await this.storageService.set('validateLogin', true);
-    this.navController.navigateForward('menu/home');
-  } catch (error) {
-    this.presentErrorToast(error as string);
-    console.log('Response', error);
-  }
-}
-
-
-  async presentErrorToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 4000,
-      position: 'bottom',
-      cssClass: 'toast-error',
+  loginUser(credentials: any) {
+    console.log(credentials);
+    this.authService.loginUser(credentials).then(res => {
+      this.errorMenssage = "";
+      try {
+        this.storageService.set('login', true);
+      } catch (error) {
+        console.error('Error guardando en el storage:', error);
+      }
+      this.navCtrl.navigateForward("/menu/home");
+    }).catch(error => {
+      this.errorMenssage = error;
     });
-    await toast.present();
   }
 
-  goToRegister() {
-  this.navController.navigateForward('/register');
-}
+  goRegister() {
+    this.router.navigateByUrl("/register")
+  }
 }

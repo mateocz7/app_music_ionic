@@ -1,15 +1,33 @@
-<ion-content [style.--background]="bgFondo">
-<swiper-container pagination="true" loop="true" slides-per-wiew= "1" class="my-swiper">
-  <swiper-slide *ngFor="let intro of intro">
-    <div class="slide-content">
-      <img [src]="intro.image">
-      <h2 class="text-title-background">{{intro.title}}</h2>
-      <p class="text-description-background">{{intro.description}}</p>
-    </div>
-  </swiper-slide>
-</swiper-container>
+<ion-content [style.--background]="bgColor">
+  <ion-row class="ion-justify-content-end ion-padding">
+    <a class="skip-link" (click)="goHome()">Skip</a>
+  </ion-row>
 
-<div class="ion-text-center">
-  <ion-button (click)="goBack()" [ngClass]="buttonClass">Seguir</ion-button>
-</div>
+  <swiper-container loop="true" slides-per-view="1"  pagination=".custom-swiper-pagination">
+    <swiper-slide *ngFor="let introSlider of  introSliders">
+      <div class="slide-content">
+        <div class="slide-img--container">
+          <img [src]="introSlider.image"/>
+        </div>
+        <div class="ion-padding">
+          <h2 [style.color]="titleColor">{{ introSlider.title }}</h2>
+          <p [style.color]="textColor">{{ introSlider.description }}</p>
+        </div>
+      </div>
+    </swiper-slide>
+  </swiper-container>
+
+  <ion-grid>
+    <ion-row class="ion-justify-content-between">
+      <ion-col size="6" class="ion-padding-start">
+        <button class="btn-go" (click)="goHome()">
+          Get started
+        </button>
+      </ion-col>
+      <ion-col size="6">
+        <div class="custom-swiper-pagination"></div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
 </ion-content>

@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import {  introGuard } from './guards/intro.guard';
+import { IntroGuard } from './guards/intro.guard';
 import { loginGuard } from './guards/login.guard';
 
+
 export const routes: Routes = [
+
   {
     path: '',
     redirectTo: 'menu/home',
@@ -23,15 +25,15 @@ export const routes: Routes = [
   {
     path: 'menu',
     loadComponent: () => import('./menu/menu.page').then( m => m.MenuPage),
-    children:[
+    children: [
       {
         path: 'home',
-        loadComponent: () => import('./home/home.page').then((m) => m.HomePage), canActivate: [introGuard,loginGuard]
-      }
+        loadComponent: () => import('./home/home.page').then((m) => m.HomePage), canActivate: [IntroGuard, loginGuard]
+      },
     ]
   },
   {
     path: 'songs-modal',
     loadComponent: () => import('./songs-modal/songs-modal.page').then( m => m.SongsModalPage)
-  },
+  }
 ];
