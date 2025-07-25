@@ -9,7 +9,7 @@ export class AuthService {
   constructor(private storageService : StorageService) { }
 
   async loginUser(credentials: any): Promise<string> {
-  if (credentials.email === 'andres@gmail.com' && credentials.password === '12345') {
+  if (credentials.email === 'mateo@gmail.com' && credentials.password === '12345') {
     await this.storageService.set('validateLogin',true);
     return 'Validación exitosa';
   } else {
