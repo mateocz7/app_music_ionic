@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import {
@@ -65,28 +66,30 @@ export class RegisterPage implements OnInit {
   };
 
   constructor(
-    private navController: NavController,
-    private fromBuilder: FormBuilder,
-    private toastController: ToastController,
-    private storageService: StorageService,
-    private router : Router
-  ) {
-    this.registerForm = this.fromBuilder.group({
-      nombres: new FormControl('', [
-        Validators.required,
-        Validators.minLength(3),
-      ]),
-      apellidos: new FormControl('', [
-        Validators.required,
-        Validators.minLength(4),
-      ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6),
-      ]),
-    });
-  }
+  private navController: NavController,
+  private fromBuilder: FormBuilder,
+  private toastController: ToastController,
+  private storageService: StorageService,
+  private router: Router,
+  private authService: AuthService // ✅ Añadido aquí
+) {
+  this.registerForm = this.fromBuilder.group({
+    nombres: new FormControl('', [
+      Validators.required,
+      Validators.minLength(3),
+    ]),
+    apellidos: new FormControl('', [
+      Validators.required,
+      Validators.minLength(4),
+    ]),
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6),
+    ]),
+  });
+}
+
 
   async registerUser(credentials: any) {
     try {
