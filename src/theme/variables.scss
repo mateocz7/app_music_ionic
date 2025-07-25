@@ -1,28 +1,28 @@
-:root {
-  --ion-color-primary: #8a2be2;
-  --ion-color-primary-rgb: 138,43,226;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255,255,255;
-  --ion-color-primary-shade: #7925c9;
-  --ion-color-primary-tint: #9640e5;
+// For information on how to create your own theme, please see:
+// http://ionicframework.com/docs/theming/
 
-  --ion-color-secondary: #ff69b4;
-  --ion-color-secondary-rgb: 255,105,180;
-  --ion-color-secondary-contrast: #ffffff;
-  --ion-color-secondary-contrast-rgb: 255,255,255;
-  --ion-color-secondary-shade: #e05da0;
-  --ion-color-secondary-tint: #ff78bb;
+:root{
+    --color-claro: #adbff7;
+    --color-oscuro: #4b49c9;
+    --espaciado-base: 1rem;
+    --espaciado-grande: 2rem;
 
-  --ion-color-tertiary: #00ced1;
-  --ion-color-tertiary-rgb: 0,206,209;
-  --ion-color-tertiary-contrast: #000000;
-  --ion-color-tertiary-contrast-rgb: 0,0,0;
-  --ion-color-tertiary-shade: #00b7ba;
-  --ion-color-tertiary-tint: #1ad4d6;
+    --color-slide-title: #a4d6f9;
 
-  --ion-background-color: #121212;
-  --ion-background-color-rgb: 18,18,18;
 
-  --ion-text-color: #ffffff;
-  --ion-text-color-rgb: 255,255,255;
+    --bg-color: #f4f6f7; // color de fondo de la app
+    --description-color: #949494; // color de los textos
+    --title-color: #000000; // color de los titulos
+    --btn-color: #92E3A9; // color de fondo de los botones
+    --font-text-title: Avenir Next;
+    --font-text-description: Avenir;
+}
+
+
+.toast-error {
+  --background: #ffe6e6;
+  --color: #b00020;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --font-size: 14px;
 }

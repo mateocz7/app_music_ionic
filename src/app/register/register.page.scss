@@ -1,80 +1,80 @@
-.register-container {
+.profile-defaul {
   display: flex;
   flex-direction: column;
-  padding: 20px;
-}
+  align-items: center;
+  justify-content: center;
+  margin: 40px 20px;
 
-.header {
-  text-align: center;
-  margin-bottom: 30px;
-
-  h2 {
-    font-size: 26px;
-    font-weight: bold;
-    color: #ffffff;
+  h3 {
+    font-size: 24px;
+    font-weight: 700;
+    color: #1d2b18;
+    margin: 12px 0 4px;
+    text-align: center;
   }
 
   p {
     font-size: 14px;
-    color: #cccccc;
+    color: #6a6a6a;
+    text-align: center;
+    margin: 0;
   }
 }
 
-.register-form {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  padding: 24px;
-  background-color: #1e1e1e;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+.credentials-form {
+  margin: 40px 20px;
+  padding: 32px 24px;
+  background: #f8f8f8;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
 }
 
-.input-field {
-  --background: #292929;
+.validation-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 4px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+
+.credentials-form ion-item {
+  --background: #ffffff;
+  --border-radius: 12px;
+  margin-bottom: 18px;
+  padding-inline-start: 8px;
+  padding-inline-end: 8px;
+  --inner-padding-end: 0;
+  --highlight-height: 1px;
+  --border-color: #dcdcdc; // línea inferior gris claro
+}
+
+.credentials-form ion-input {
+  color: #1d1d1d;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.credentials-form .submit-button {
+  --background: var(--btn-color);  /* Verde claro */
   --color: #ffffff;
-  border-radius: 10px;
-  padding: 6px 10px;
-}
-
-ion-label {
-  color: #bbbbbb;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-ion-input {
-  font-size: 15px;
-  color: #ffffff;
-}
-
-.validation-msg {
-  font-size: 12px;
-  color: #ff6b6b;
-  padding-left: 8px;
-  margin-top: -8px;
-  margin-bottom: 8px;
-}
-
-.register-btn {
-  margin-top: 20px;
-  --background: #8a2be2;
-  --border-radius: 30px;
   font-weight: bold;
   font-size: 16px;
+  border-radius: 12px; /* 🔧 BAJA este valor para evitar los bordes redondeados extremos */
+  margin-top: 10px;
+  box-shadow: none; /* ❌ O elimina el sombreado si no lo necesitas */
 }
 
-.footer-link {
+.account-question {
   text-align: center;
   margin-top: 20px;
   font-size: 14px;
-  color: #cccccc;
+  color: #333;
 }
 
-.login-action {
-  color: #00bcd4;
+.login-link {
+  color: #3e9eff;
   font-weight: bold;
-  margin-left: 6px;
+  margin-left: 4px;
   cursor: pointer;
-  text-decoration: underline;
+  text-decoration: none;
 }
