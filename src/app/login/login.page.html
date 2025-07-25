@@ -1,38 +1,51 @@
 <ion-content [style.--background]="bgFondo">
-  <figure class="profile-defaul img ion-text-center">
-    <img src="/assets/images/login/user-defaul.png">
-    <h3>Sign up to your account</h3>
-    <p>Enter your personal data to create your account</p>
-  </figure>
-  <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="credentials-form">
-    <ion-item class="custom-imputs">
-      <ion-input labelPlacement="fixed" placeholder="Escribe tu email" formControlName="email"></ion-input>
-    </ion-item>
-    <div>
-      <div *ngFor="let validation of validation_messages.email">
-        <div *ngIf="loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty">
-          {{ validation.message }}
-        </div>
+  <div class="login-container">
+    <div class="login-header">
+      <img src="/assets/images/login/user-defaul.png" class="avatar" />
+      <div class="title-group">
+        <h2 class="welcome-title">Sign up to your account</h2>
+        <p class="subtitle">Enter your personal data to create your account</p>
+      </div>
     </div>
-    </div>
-    <ion-item class="custom-imputs">
-      <ion-input type="password" placeholder="Escribe tu contraseña" formControlName="password"></ion-input>
-    </ion-item>
-    <div>
-      <div *ngFor="let validation of validation_messages.password">
-        <div *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty">
-          {{ validation.message }}
-        </div>
-    </div>
-    </div>
-    <ion-button class="submit-button" expand="full" shape="round" color="success" [disabled]="!loginForm.valid" type="submit">
-      Login
-    </ion-button>
-  </form>
 
-  <div class="account-question">
-    <span>¿No tienes una cuenta? </span>
-    <a (click)="goToRegister()" class="login-link">Regístrate</a>
-</div>
-  
+    <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="form-wrapper">
+      
+      <!-- Email Field -->
+      <ion-item class="form-field">
+        <ion-label position="stacked">Email</ion-label>
+        <ion-input placeholder="Escribe tu email" formControlName="email"></ion-input>
+      </ion-item>
+      <div class="validation-msg">
+        <div *ngFor="let validation of validation_messages.email">
+          <div *ngIf="loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Password Field -->
+      <ion-item class="form-field">
+        <ion-label position="stacked">Contraseña</ion-label>
+        <ion-input type="password" placeholder="Escribe tu contraseña" formControlName="password"></ion-input>
+      </ion-item>
+      <div class="validation-msg">
+        <div *ngFor="let validation of validation_messages.password">
+          <div *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty">
+            {{ validation.message }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <ion-button expand="block" color="success" class="login-button" [disabled]="!loginForm.valid" type="submit">
+        Login
+      </ion-button>
+    </form>
+
+    <!-- Register Link -->
+    <div class="bottom-link">
+      <span>¿No tienes una cuenta?</span>
+      <a (click)="goToRegister()" class="register-link"> Regístrate</a>
+    </div>
+  </div>
 </ion-content>
