@@ -53,17 +53,19 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {}
 
-  async loginUser(credentials: any) {
-    try {
-      const response = await this.authService.loginUser(credentials);
-      this.errorMessage = '';
-      await this.storageService.set('validateLogin', true);
-      this.navController.navigateForward('menu/home');
-    } catch (error) {
-      this.presentErrorToast(error as string);
-      console.log('Response', error);
-    }
+async loginUser(credentials: any) {
+  try {
+    const response = await this.authService.loginUser(credentials);
+    this.errorMessage = '';
+    await this.storageService.set('validateLogin', true);
+    this.navController.navigateForward('menu/home');
+  } catch (error) {
+    this.presentErrorToast(error as string);
+    console.log('Response', error);
   }
+}
+
+
   async presentErrorToast(message: string) {
     const toast = await this.toastController.create({
       message: message,
