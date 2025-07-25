@@ -1,84 +1,43 @@
-<ion-content [style.--background]="titleColor" class="login-content">
-  <div class="login-header-text">
-    <h1>Hello <br> Sign in!</h1>
-  </div>
-  <div class="content-wrapper ion-padding">
-    <figure class="profile-dafault-image ion-text-center login-header">
-      <!-- <img
-        class="login-header--img"
-        src="https://static.thenounproject.com/png/5100711-200.png"
-        alt=""
-      /> -->
-      <h2 [style.color]="titleColor" class="login-header--title">Ingresa tus datos</h2>
-    </figure>
+<ion-content [style.--background]="'#141e30'" class="login-page">
+  <div class="login-wrapper">
+    <div class="login-card">
+      <img src="assets/images/login_logo.jpg" class="login-logo" />
+      <h2 class="login-title">Accede a tu cuenta</h2>
+      <p class="login-subtitle">Bienvenido de nuevo</p>
 
-    <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="login-form">
-      <ion-item class="login-form--item">
-        <ion-input
-          label="Email"
-          labelPlacement="stacked"
-          placeholder="email@domain.com"
-          formControlName="email"
-          class="login-form-item--input"
-          [style.--border-radius]="borderRadius"
-        ></ion-input>
-      </ion-item>
-      <div>
-        <ng-container *ngFor="let validation of validation_messages.email">
-          <div
-            *ngIf="(
-            loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty
-          )"
-          class="validation-error"
-          >
+      <form [formGroup]="loginForm" (ngSubmit)="loginUser(loginForm.value)" class="login-form">
+        <!-- Email -->
+        <ion-item class="input-group">
+          <ion-label class="custom-label" position="floating">Correo electrónico</ion-label>
+
+          <ion-input formControlName="email"></ion-input>
+        </ion-item>
+        <div class="error-text" *ngFor="let validation of validation_messages.email">
+          <div *ngIf="loginForm.get('email')?.hasError(validation.type) && loginForm.get('email')?.dirty">
             {{ validation.mensaje }}
           </div>
-        </ng-container>
-      </div>
+        </div>
 
-      <ion-item class="login-form--item">
-        <ion-input
-          label="Contraseña"
-          labelPlacement="stacked"
-          type="password"
-          placeholder="Escribe tu contraseña"
-          formControlName="password"
-          class="login-form-item--input"
-        ></ion-input>
-      </ion-item>
-      <div>
-        <ng-container *ngFor="let validation of validation_messages.password">
-          <div
-            *ngIf="(
-            loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty
-          )"
-          class="validation-error"
-          >
+        <!-- Password -->
+        <ion-item class="input-group">
+          <ion-label class="custom-label"  position="floating">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password"></ion-input>
+        </ion-item>
+        <div class="error-text" *ngFor="let validation of validation_messages.password">
+          <div *ngIf="loginForm.get('password')?.hasError(validation.type) && loginForm.get('password')?.dirty">
             {{ validation.mensaje }}
           </div>
-        </ng-container>
-      </div>
+        </div>
 
-      <ion-button
-        type="submit"
-        [disabled]="!loginForm.valid"
-        class="login-form--btn"
-      >
-        Login
-      </ion-button>
-      <ion-row class="ion-justify-content-center ion-padding go-login">
-        <p class="ion-no-margin go-login--text" [style.color]="colorNegro" >¿No tienes una cuenta?</p>
-        <a class="skip-link" (click)="goRegister()">Registrate</a>
-      </ion-row>
-    </form>
-    {{ errorMenssage }}
+        <ion-button expand="block" type="submit" class="login-btn" [disabled]="!loginForm.valid">
+          Iniciar sesión
+        </ion-button>
+      </form>
+
+      <div class="login-bottom">
+        <span>¿No tienes cuenta?</span>
+        <a class="login-link" (click)="goRegister()">Regístrate</a>
+      </div>
+    </div>
   </div>
 </ion-content>
-
-<ion-footer>
-  <ion-toolbar color="light">
-    <ion-title size="small" class="ion-text-center">
-      &copy; 2025 Luis Esquivia
-    </ion-title>
-  </ion-toolbar>
-</ion-footer>
