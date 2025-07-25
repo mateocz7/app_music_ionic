@@ -1,62 +1,64 @@
-<ion-content [style.--background]="bgFondo">
-  <figure class="profile-defaul img ion-text-center">
-    <h3>Create your account</h3>
-  </figure>
+<ion-content [style.--background]="bgFondo" class="register-page">
+  <div class="register-wrapper">
+    <div class="register-card">
+      <figure class="profile-defaul">
+        <h3>Crea tu cuenta</h3>
+      </figure>
 
-  <form [formGroup]="registerForm"(ngSubmit)="registerUser(registerForm.value)" class="credentials-form">
-    <!-- Nombre -->
+      <form [formGroup]="registerForm" (ngSubmit)="registerUser(registerForm.value)" class="credentials-form">
+        <!-- Nombre -->
+        <ion-item class="custom-inputs">
+          <ion-input label="Nombres" formControlName="nombres" labelPlacement="floating" placeholder="ex: Pedro Mario">
+          </ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validation_messages.nombres">
+          <div *ngIf="registerForm.get('nombres')?.hasError(validation.type) && registerForm.get('nombres')?.dirty" class="validation-message">
+            {{ validation.message }}
+          </div>
+        </div>
 
-    <ion-item class="custom-inputs">
-      <ion-input label="Nombres" formControlName="nombres"labelPlacement="floating" placeholder="ex: Pedro Mario">
-      </ion-input>
-    </ion-item>
-    <div *ngFor="let validation of validation_messages.nombres">
-  <div *ngIf="registerForm.get('nombres')?.hasError(validation.type) && registerForm.get('nombres')?.dirty" class="validation-message">
-    {{ validation.message }}
+        <!-- Apellido -->
+        <ion-item class="custom-inputs">
+          <ion-input label="Apellidos" formControlName="apellidos" labelPlacement="floating" placeholder="ex: Castro Diaz">
+          </ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validation_messages.apellidos">
+          <div *ngIf="registerForm.get('apellidos')?.hasError(validation.type) && registerForm.get('apellidos')?.dirty" class="validation-message">
+            {{ validation.message }}
+          </div>
+        </div>
+
+        <!-- Email -->
+        <ion-item class="custom-inputs">
+          <ion-input label="Correo electrónico" formControlName="email" labelPlacement="floating" placeholder="ex: jon.smith@email.com" type="email">
+          </ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validation_messages.email">
+          <div *ngIf="registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty" class="validation-message">
+            {{ validation.message }}
+          </div>
+        </div>
+
+        <!-- Contraseña -->
+        <ion-item class="custom-inputs">
+          <ion-input label="Contraseña" formControlName="password" labelPlacement="floating" placeholder="********" type="password">
+          </ion-input>
+        </ion-item>
+        <div *ngFor="let validation of validation_messages.password">
+          <div *ngIf="registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty" class="validation-message">
+            {{ validation.message }}
+          </div>
+        </div>
+
+        <ion-button type="submit" expand="block" class="submit-button" shape="round" [disabled]="!registerForm.valid">
+          Registrarse
+        </ion-button>
+      </form>
+
+      <div class="account-question">
+        <span>¿Ya tienes una cuenta?</span>
+        <a (click)="goToLogin()" class="login-link">Inicia sesión</a>
+      </div>
+    </div>
   </div>
-</div>
-
-    <!-- Apellido -->
-    <ion-item class="custom-inputs">
-      <ion-input label="Apellidos" formControlName="apellidos" labelPlacement="floating" placeholder="ex: Castro Diaz">
-      </ion-input>
-    </ion-item>
-    <div *ngFor="let validation of validation_messages.apellidos">
-      <div *ngIf="registerForm.get('apellidos')?.hasError(validation.type) && registerForm.get('apellidos')?.dirty" class="validation-message">
-        {{ validation.message }}
-      </div>
-    </div>
-
-    <!-- Email -->
-    <ion-item class="custom-inputs">
-      <ion-input label="Correo electronico" formControlName="email" labelPlacement="floating" placeholder="ex: jon.smith@email.com" type="email">
-      </ion-input>
-    </ion-item>
-    <div *ngFor="let validation of validation_messages.email">
-      <div *ngIf="registerForm.get('email')?.hasError(validation.type) && registerForm.get('email')?.dirty" class="validation-message">
-        {{ validation.message }}
-      </div>
-    </div>
-
-    <!-- Contraseña -->
-    <ion-item class="custom-inputs">
-      <ion-input label="Contraseña" formControlName="password" labelPlacement="floating" placeholder="********" type="password">
-      </ion-input>
-    </ion-item>
-    <div *ngFor="let validation of validation_messages.password">
-      <div *ngIf="registerForm.get('password')?.hasError(validation.type) && registerForm.get('password')?.dirty" class="validation-message">
-        {{ validation.message }}
-      </div>
-    </div>
-
-    <!-- Botón de registrar -->
-    <ion-button type="submit" expand="block" shape="round" [disabled]="!registerForm.valid" class="submit-button">
-      Registrarse
-    </ion-button>
-  </form>
-
-  <div class="account-question">
-  <span>¿Ya tienes una cuenta? </span>
-  <a (click)="goToLogin()" class="login-link">Inicia sesión</a>
-</div>
 </ion-content>
