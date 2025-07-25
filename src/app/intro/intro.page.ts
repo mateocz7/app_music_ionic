@@ -20,23 +20,30 @@ export class IntroPage implements OnInit {
   titleColor = 'var(--title-color)';
   textColor = 'var(--text-color)';
 
-  introSliders = [
-    {
-      title: 'Find Best Musicians All Around Your City',
-      description: 'Thousands of musicians around you are waiting to rock your event.',
-      image: 'assets/images/men_guitar.png'
-    },
-    {
-      title: 'Fastest Way To Book Great Musicians',
-      description: 'Find the perfect match to perform for your event and make the day remarkable.',
-      image: 'assets/images/woman_singing.png'
-    },
-    {
-      title: 'Find Top Sessions Pros For Your Event',
-      description: 'Find the perfect match to perform for your event and make the day remarkable.',
-      image: 'assets/images/image.png'
-    }
-  ]
+ introSliders = [
+  {
+    title: 'Encuentra los mejores músicos en tu ciudad',
+    description: 'Miles de músicos cerca de ti están listos para darle ritmo a tu evento.',
+    image: 'assets/images/music1.jpg'
+  },
+  {
+    title: 'La forma más rápida de contratar artistas increíbles',
+    description: 'Encuentra la opción perfecta para hacer de tu evento algo inolvidable.',
+    image: 'assets/images/music2.jpg'
+  },
+  {
+    title: 'Contrata profesionales top para tu próximo evento',
+    description: 'Haz que tu celebración se destaque con músicos verdaderamente talentosos.',
+    image: 'assets/images/music3.jpeg'
+  },
+
+  {
+    title: 'La forma más rápida de contratar artistas increíbles',
+    description: 'Encuentra la opción perfecta para hacer de tu evento algo inolvidable.',
+    image: 'assets/images/music2.jpg'
+  },
+];
+
 
   constructor(private router: Router, private storageService: StorageService) { }
 
