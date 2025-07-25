@@ -1,78 +1,86 @@
-.profile-defaul {
+.login-page {
+  height: 100%;
+}
+
+.login-wrapper {
+  height: 100%;
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  margin: 40px 20px;
-
-  img {
-    width: 80px;
-    height: 80px;
-    margin-bottom: 20px;
-  }
-
-  h3 {
-    font-size: 22px;
-    font-weight: bold;
-    color: #1d2b18;
-    margin: 10px 0;
-  }
-
-  p {
-    font-size: 14px;
-    color: #666666;
-    margin: 0 20px;
-  }
+  align-items: center;
+  padding: 20px;
 }
 
-.credentials-form {
-  margin: 40px 20px;
-  padding: 30px 20px;
-  background: #f3f1f1;
+.login-card {
+  width: 100%;
+  max-width: 380px;
+  background: #ffffff;
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+  padding: 30px 20px;
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+  text-align: center;
 }
 
-.credentials-form div {
-  color: #ff4d4f; /* Rojo suave para errores, ajusta al color que quieras */
-  font-size: 13px;
-  margin-top: 4px;
+.login-avatar {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 16px;
+  border-radius: 50%;
+  background-color: #eee;
 }
 
-.credentials-form ion-item {
-  --background: #f5f5f5;
+.login-card h3 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #2b2b2b;
+  margin-bottom: 8px;
+}
+
+.login-card p {
+  font-size: 14px;
+  color: #666666;
+  margin-bottom: 24px;
+}
+
+.input-field {
+  --background: #358ce3;
   --border-radius: 12px;
   margin-bottom: 16px;
-  padding: 4px 10px;
-  
-  /* Hace que la línea (border-bottom) sea más clara */
-  --border-color: #d3d3d3; /* Gris claro */
 }
 
-.credentials-form ion-input {
-    color: #000000; /* Texto negro */
-  font-size: 16px;
+ion-label {
+  color: #3a3a3a;
 }
 
-.credentials-form submit-button {
-  --background: #a4e33b; /* Color verde tipo ejemplo */
-  --color: #000000;
-  border-radius: 12px;
+ion-input {
+  color: #1c1c1c;
+  font-size: 15px;
+}
+
+.error-text {
+  font-size: 12px;
+  color: #d32f2f;
+  margin-top: 4px;
+  text-align: left;
+}
+
+.login-btn {
+  --background: #358ce3;
+  --color: #ffffff;
   font-weight: bold;
+  border-radius: 14px;
+  margin-top: 12px;
 }
 
-
-.account-question {
-  text-align: center;
-  margin-top: 20px;
-  color: #333;
+.register-section {
+  margin-top: 18px;
   font-size: 14px;
-}
-
-.login-link {
-  color: #3e9eff;
-  font-weight: bold;
-  margin-left: 4px;
-  cursor: pointer;
-  text-decoration: none;
+  color: #333333;
+  
+  a {
+    margin-left: 5px;
+    color: #2d89ef;
+    font-weight: bold;
+    cursor: pointer;
+    text-decoration: none;
+  }
 }
